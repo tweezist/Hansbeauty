@@ -1,1 +1,247 @@
-# Hansbeauty
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hans Korea Beauty</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600&family=Noto+Sans+SC:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #f5f1e8;
+      --beige: #e7d9c6;
+      --brown: #8b715b;
+      --black: #2b2b2b;
+    }
+    body {
+      margin: 0;
+      font-family: 'Noto Sans KR', 'Noto Sans SC', 'Poppins', sans-serif;
+      color: var(--black);
+      background-color: var(--cream);
+      line-height: 1.6;
+    }
+    header {
+      background-color: var(--beige);
+      padding: 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+      font-weight: 600;
+    }
+    .lang-buttons {
+      margin-top: 10px;
+    }
+    .lang-buttons button {
+      margin: 0 5px;
+      padding: 6px 12px;
+      border: none;
+      background: var(--brown);
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+    section.promo {
+      display: grid;
+      gap: 12px;
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+    .promo-card {
+      background: var(--brown);
+      color: white;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h2 {
+      margin-top: 30px;
+      text-align: center;
+      font-weight: 600;
+    }
+    .gallery {
+      position: relative;
+      max-width: 100%;
+      margin: 20px auto;
+      background: var(--beige);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+    .slides { display: none; width: 100%; }
+    .prev, .next {
+      cursor: pointer; position: absolute; top: 50%;
+      padding: 10px; color: white; font-weight: bold;
+      background: rgba(0,0,0,0.4); border-radius: 50%;
+      user-select: none; transform: translateY(-50%);
+    }
+    .prev { left: 15px; }
+    .next { right: 15px; }
+    .dots { text-align: center; margin-top: 10px; }
+    .dot {
+      height: 12px; width: 12px; margin: 0 4px;
+      background: var(--brown); border-radius: 50%;
+      display: inline-block; cursor: pointer;
+    }
+    .active, .dot:hover { background: var(--black); }
+    .contact-box {
+      background: var(--beige);
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .contact-box a {
+      display: inline-block;
+      margin: 5px;
+      padding: 8px 14px;
+      background: var(--brown);
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+    footer {
+      background: var(--brown);
+      color: white;
+      padding: 15px;
+      text-align: center;
+      margin-top: 30px;
+    }
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.5em; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1 id="title">Hans Korea Beauty</h1>
+    <div class="lang-buttons">
+      <button onclick="setLang('ko')">한국어</button>
+      <button onclick="setLang('zh')">中文</button>
+      <button onclick="setLang('en')">English</button>
+    </div>
+  </header>
+
+  <section class="promo">
+    <div class="promo-card"><p id="promo1"></p></div>
+    <div class="promo-card"><p id="promo2"></p></div>
+    <div class="promo-card"><p id="promo3"></p></div>
+    <div class="promo-card"><p id="promo4"></p></div>
+  </section>
+
+  <main>
+    <h2 id="gallery-title"></h2>
+    <div class="gallery">
+      <img class="slides" src="images/before1.jpg" alt="Before 1">
+      <img class="slides" src="images/after1.jpg" alt="After 1">
+      <img class="slides" src="images/before2.jpg" alt="Before 2">
+      <img class="slides" src="images/after2.jpg" alt="After 2">
+      <a class="prev" onclick="plusSlides(-1)">‹</a>
+      <a class="next" onclick="plusSlides(1)">›</a>
+    </div>
+    <div class="dots">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+      <span class="dot" onclick="currentSlide(4)"></span>
+    </div>
+
+    <h2 id="contact-title"></h2>
+    <div class="contact-box">
+      <p id="address"></p>
+      <a href="https://wa.me/601123115187" target="_blank">WhatsApp</a>
+      <a href="https://www.instagram.com/hansbeauty.jb?igsh=eGQycWN4eXc0aG42" target="_blank">Instagram</a>
+    </div>
+
+    <h2 id="map-title"></h2>
+    <iframe src="https://www.google.com/maps?q=48-G,+Jalan+Permas+10/7,+Bandar+Baru+Permas+Jaya,+81750+Masai,+Johor,+Malaysia&output=embed"
+      width="100%" height="300" style="border:0; border-radius:10px;" allowfullscreen="" loading="lazy"></iframe>
+  </main>
+
+  <footer>
+    © 2025 Hans Korea Beauty
+  </footer>
+
+  <script>
+    const texts = {
+      ko: {
+        promo1: "첫 방문 50% 할인!",
+        promo2: "인스타 팔로우 시 사은품 증정",
+        promo3: "충전 혜택: 500링깃=+50 / 1000링깃=+100 / 2000링깃=+300",
+        promo4: "충전 금액 결제 시 30% 할인",
+        gallery: "비포 & 애프터 갤러리",
+        contact: "연락하기",
+        address: "주소: 조호르바루 Masai, Jalan Permas 10/7",
+        map: "약도"
+      },
+      zh: {
+        promo1: "首次来访享受50%折扣！",
+        promo2: "关注Instagram送礼品",
+        promo3: "充值优惠: RM500=+50 / RM1000=+100 / RM2000=+300",
+        promo4: "使用充值金额付款可享30%折扣",
+        gallery: "前后对比画廊",
+        contact: "联系我们",
+        address: "地址: 柔佛新山 Masai, Jalan Permas 10/7",
+        map: "地图"
+      },
+      en: {
+        promo1: "50% OFF for First Visit!",
+        promo2: "Follow Instagram & Get a Gift",
+        promo3: "Top-up Bonus: RM500=+50 / RM1000=+100 / RM2000=+300",
+        promo4: "30% OFF when paying with top-up balance",
+        gallery: "Before & After Gallery",
+        contact: "Contact Us",
+        address: "Address: Masai, Johor Bahru, Jalan Permas 10/7",
+        map: "Map"
+      }
+    };
+
+    function setLang(lang) {
+      document.getElementById("promo1").innerText = texts[lang].promo1;
+      document.getElementById("promo2").innerText = texts[lang].promo2;
+      document.getElementById("promo3").innerText = texts[lang].promo3;
+      document.getElementById("promo4").innerText = texts[lang].promo4;
+      document.getElementById("gallery-title").innerText = texts[lang].gallery;
+      document.getElementById("contact-title").innerText = texts[lang].contact;
+      document.getElementById("address").innerText = texts[lang].address;
+      document.getElementById("map-title").innerText = texts[lang].map;
+    }
+
+    // 슬라이드 갤러리
+    let slideIndex = 1;
+    showSlides(slideIndex);
+    function plusSlides(n) { showSlides(slideIndex += n); }
+    function currentSlide(n) { showSlides(slideIndex = n); }
+    function showSlides(n) {
+      const slides = document.getElementsByClassName("slides");
+      const dots = document.getElementsByClassName("dot");
+      if (n > slides.length) slideIndex = 1;
+      if (n < 1) slideIndex = slides.length;
+      for (let i = 0; i < slides.length; i++) slides[i].style.display = "none";
+      for (let i = 0; i < dots.length; i++) dots[i].className = dots[i].className.replace(" active", "");
+      slides[slideIndex - 1].style.display = "block";
+      dots[slideIndex - 1].className += " active";
+    }
+
+    // 기본 언어: 한국어
+    setLang('ko');
+  </script>
+
+</body>
+</html>
