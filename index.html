@@ -1,247 +1,287 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hans Korea Beauty</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600&family=Noto+Sans+SC:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hans Korea Beauty | Permas Jaya, Johor Bahru</title>
+  <meta name="description" content="Korean authentic beauty salon in Permas Jaya, Johor Bahru. Facial, acne care, brightening, nails, cold‑plasma care. Transparent pricing and gentle, clean techniques." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root {
-      --cream: #f5f1e8;
-      --beige: #e7d9c6;
-      --brown: #8b715b;
-      --black: #2b2b2b;
-    }
-    body {
-      margin: 0;
-      font-family: 'Noto Sans KR', 'Noto Sans SC', 'Poppins', sans-serif;
-      color: var(--black);
-      background-color: var(--cream);
-      line-height: 1.6;
-    }
-    header {
-      background-color: var(--beige);
-      padding: 20px;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2em;
-      font-weight: 600;
-    }
-    .lang-buttons {
-      margin-top: 10px;
-    }
-    .lang-buttons button {
-      margin: 0 5px;
-      padding: 6px 12px;
-      border: none;
-      background: var(--brown);
-      color: white;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.9em;
-    }
-    section.promo {
-      display: grid;
-      gap: 12px;
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 0 15px;
-    }
-    .promo-card {
-      background: var(--brown);
-      color: white;
-      border-radius: 10px;
-      padding: 15px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      text-align: center;
-    }
-    main {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    h2 {
-      margin-top: 30px;
-      text-align: center;
-      font-weight: 600;
-    }
-    .gallery {
-      position: relative;
-      max-width: 100%;
-      margin: 20px auto;
-      background: var(--beige);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-    }
-    .slides { display: none; width: 100%; }
-    .prev, .next {
-      cursor: pointer; position: absolute; top: 50%;
-      padding: 10px; color: white; font-weight: bold;
-      background: rgba(0,0,0,0.4); border-radius: 50%;
-      user-select: none; transform: translateY(-50%);
-    }
-    .prev { left: 15px; }
-    .next { right: 15px; }
-    .dots { text-align: center; margin-top: 10px; }
-    .dot {
-      height: 12px; width: 12px; margin: 0 4px;
-      background: var(--brown); border-radius: 50%;
-      display: inline-block; cursor: pointer;
-    }
-    .active, .dot:hover { background: var(--black); }
-    .contact-box {
-      background: var(--beige);
-      padding: 20px;
-      border-radius: 10px;
-      margin: 20px 0;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    .contact-box a {
-      display: inline-block;
-      margin: 5px;
-      padding: 8px 14px;
-      background: var(--brown);
-      color: white;
-      border-radius: 6px;
-      text-decoration: none;
-    }
-    footer {
-      background: var(--brown);
-      color: white;
-      padding: 15px;
-      text-align: center;
-      margin-top: 30px;
-    }
-    @media (max-width: 600px) {
-      header h1 { font-size: 1.5em; }
-    }
+    :root{ --cream:#f9f5ef; }
+    body{ font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji"; background:var(--cream); color:#111; }
+    .glass{ backdrop-filter:saturate(180%) blur(10px); background:rgba(255,255,255,.6); }
+    .container{ max-width:1100px; }
+    .shadow-soft{ box-shadow: 0 6px 30px rgba(0,0,0,.08); }
+    .btn{ @apply inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold; }
+    /* square image helper for gallery */
+    .sq{position:relative;width:100%;}
+    .sq::before{content:'';display:block;padding-top:100%;}
+    .sq>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
   </style>
 </head>
 <body>
-
-  <header>
-    <h1 id="title">Hans Korea Beauty</h1>
-    <div class="lang-buttons">
-      <button onclick="setLang('ko')">한국어</button>
-      <button onclick="setLang('zh')">中文</button>
-      <button onclick="setLang('en')">English</button>
+  <!-- Top bar -->
+  <header class="w-full sticky top-0 z-40">
+    <div class="glass border-b border-black/5">
+      <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <!-- Replace src with your logo path -->
+          <img src="https://i.postimg.cc/zXTBPY1v/20250320-140953-0000.png" alt="Hans Korea Beauty" class="h-9 w-9 rounded-full object-cover bg-black/10"/>
+          <div class="leading-tight">
+            <p class="text-xs tracking-widest">PERMAS JAYA · JOHOR BAHRU</p>
+            <h1 class="font-extrabold text-lg">HANS KOREA BEAUTY</h1>
+          </div>
+        </div>
+        <nav class="hidden md:flex items-center gap-6 text-sm">
+          <a href="#about" class="hover:opacity-70">About</a>
+          <a href="#services" class="hover:opacity-70">Services</a>
+          <a href="#promotions" class="hover:opacity-70">Promotions</a>
+          <a href="#gallery" class="hover:opacity-70">Before · After</a>
+          <a href="#visit" class="hover:opacity-70">Visit</a>
+        </nav>
+      </div>
     </div>
   </header>
 
-  <section class="promo">
-    <div class="promo-card"><p id="promo1"></p></div>
-    <div class="promo-card"><p id="promo2"></p></div>
-    <div class="promo-card"><p id="promo3"></p></div>
-    <div class="promo-card"><p id="promo4"></p></div>
+  <!-- Hero -->
+  <section class="container mx-auto px-4 pt-12 pb-10 md:pt-16">
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h2 class="text-3xl md:text-5xl font-extrabold leading-tight">Korean Authentic Beauty in <span class="underline decoration-2 underline-offset-4">Permas Jaya</span></h2>
+        <p class="mt-4 text-base md:text-lg text-black/70">Facials, acne care, brightening, nail services, and cold‑plasma aesthetic care delivered to international standards.</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#promotions" class="btn bg-black text-white">See Promotions</a>
+          <a href="#visit" class="btn bg-white border border-black/10">Location & Hours</a>
+        </div>
+      </div>
+      <div class="relative">
+        <img src="https://images.unsplash.com/photo-1556228578-8e0ab42f3c5d?q=80&w=1400&auto=format&fit=crop" alt="Spa" class="rounded-3xl shadow-soft"/>
+        <div class="absolute -bottom-5 -left-5 bg-white/90 rounded-2xl p-4 shadow-soft hidden md:block">
+          <p class="text-xs uppercase tracking-widest text-black/60">WhatsApp</p>
+          <p class="font-bold text-lg"><a href="https://wa.me/601123115187">+60 11 2311 5187</a></p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <main>
-    <h2 id="gallery-title"></h2>
-    <div class="gallery">
-      <img class="slides" src="images/before1.jpg" alt="Before 1">
-      <img class="slides" src="images/after1.jpg" alt="After 1">
-      <img class="slides" src="images/before2.jpg" alt="Before 2">
-      <img class="slides" src="images/after2.jpg" alt="After 2">
-      <a class="prev" onclick="plusSlides(-1)">‹</a>
-      <a class="next" onclick="plusSlides(1)">›</a>
+  <!-- About -->
+  <section id="about" class="container mx-auto px-4 pb-6">
+    <div class="rounded-2xl p-6 bg-white shadow-soft">
+      <h3 class="text-2xl font-extrabold">About</h3>
+      <p class="mt-3 text-black/75">We are a Korean‑run salon in Johor Bahru offering bespoke skin care, acne extraction, brightening facials, nail services, and advanced cold‑plasma aesthetic care. Our approach is clean, gentle, and results‑driven—with transparent pricing and no hidden add‑ons.</p>
+      <ul class="mt-4 grid md:grid-cols-3 gap-3 text-sm">
+        <li class="p-3 rounded-xl bg-black/5">International‑standard hygiene</li>
+        <li class="p-3 rounded-xl bg-black/5">Personalized skin plans</li>
+        <li class="p-3 rounded-xl bg-black/5">Transparent pricing</li>
+      </ul>
     </div>
-    <div class="dots">
-      <span class="dot" onclick="currentSlide(1)"></span>
-      <span class="dot" onclick="currentSlide(2)"></span>
-      <span class="dot" onclick="currentSlide(3)"></span>
-      <span class="dot" onclick="currentSlide(4)"></span>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="container mx-auto px-4 pb-6">
+    <div class="rounded-2xl p-6 bg-white shadow-soft">
+      <div class="flex items-center justify-between gap-4">
+        <h3 class="text-2xl font-extrabold">Services</h3>
+        <a class="text-sm underline" href="#visit">Book via WhatsApp</a>
+      </div>
+      <div id="servicesGrid" class="mt-5 grid sm:grid-cols-2 md:grid-cols-3 gap-4"></div>
     </div>
+  </section>
 
-    <h2 id="contact-title"></h2>
-    <div class="contact-box">
-      <p id="address"></p>
-      <a href="https://wa.me/601123115187" target="_blank">WhatsApp</a>
-      <a href="https://www.instagram.com/hansbeauty.jb?igsh=eGQycWN4eXc0aG42" target="_blank">Instagram</a>
+  <!-- Promotions Board -->
+  <section id="promotions" class="container mx-auto px-4 pb-6">
+    <div class="rounded-2xl p-6 bg-white shadow-soft">
+      <div class="flex items-center justify-between gap-4">
+        <h3 class="text-2xl font-extrabold">Promotions</h3>
+        <button id="promoAddBtn" class="btn bg-black text-white text-xs">+ Add Promo (edit JSON)</button>
+      </div>
+      <div id="promoList" class="mt-5 grid md:grid-cols-2 gap-4"></div>
+      <!-- Inline JSON you can edit to update promos -->
+      <script id="PROMO_DATA" type="application/json">{
+        "items": [
+          {"title": "Top‑Up RM1000, Get RM200 Bonus", "desc": "LIMITED: Until Sep 30", "until": "2025-09-30"},
+          {"title": "Personalized Facial Trial RM198", "desc": "Introductory first‑time offer", "until": "2025-12-31"}
+        ]
+      }</script>
     </div>
+  </section>
 
-    <h2 id="map-title"></h2>
-    <iframe src="https://www.google.com/maps?q=48-G,+Jalan+Permas+10/7,+Bandar+Baru+Permas+Jaya,+81750+Masai,+Johor,+Malaysia&output=embed"
-      width="100%" height="300" style="border:0; border-radius:10px;" allowfullscreen="" loading="lazy"></iframe>
-  </main>
+  <!-- Before·After Gallery (categorized, single square images) -->
+  <section id="gallery" class="container mx-auto px-4 pb-6">
+    <div class="rounded-2xl p-6 bg-white shadow-soft">
+      <div class="flex items-center justify-between gap-4">
+        <h3 class="text-2xl font-extrabold">Before · After</h3>
+        <button id="galleryAddBtn" class="btn bg-white border border-black/10 text-xs">+ Add Item (edit JSON)</button>
+      </div>
+      <div id="galleryFilters" class="mt-3 flex flex-wrap gap-2"></div>
+      <div id="galleryGrid" class="mt-5 grid sm:grid-cols-2 md:grid-cols-3 gap-4"></div>
+      <script id="GALLERY_DATA" type="application/json">{
+        "categories": ["스킨플래닝", "콜드플라즈마", "여드름케어", "무좀발톱", "소극성속모증", "색소관리"],
+        "items": [
+          {"img":"https://i.postimg.cc/gkGFdCZn/Grid-Art-20250514-083249798.jpg","label":"스킨플래닝","cat":"스킨플래닝"},
+          {"img":"https://i.postimg.cc/7LGjmDpQ/Grid-Art-20250125-172847971.jpg","label":"콜드플라즈마","cat":"콜드플라즈마"},
+          {"img":"https://i.postimg.cc/fbRRL3SS/Grid-Art-20231027-124749669.jpg","label":"여드름케어","cat":"여드름케어"},
+          {"img":"https://i.postimg.cc/1tLmJJCD/Grid-Art-20231021-211835545.jpg","label":"무좀발톱","cat":"무좀발톱"},
+          {"img":"https://i.postimg.cc/tJtKW5Lq/Grid-Art-20250801-212948869.jpg","label":"소극성속모증","cat":"소극성속모증"},
+          {"img":"https://i.postimg.cc/vB9FHMh6/Grid-Art-20250910-225926593.jpg","label":"색소관리","cat":"색소관리"}
+        ]
+      }</script>
+    </div>
+  </section>
 
-  <footer>
-    © 2025 Hans Korea Beauty
+  <!-- Visit / Contact -->
+  <section id="visit" class="container mx-auto px-4 pb-24">
+    <div class="rounded-2xl p-6 bg-white shadow-soft">
+      <h3 class="text-2xl font-extrabold">Visit</h3>
+      <div class="mt-4 grid md:grid-cols-2 gap-6">
+        <div>
+          <p class="font-semibold">Address</p>
+          <p class="mt-1">48‑G, Jalan Permas 10/7, Bandar Baru Permas Jaya,<br/>81750 Masai, Johor, Malaysia</p>
+          <p class="mt-4 font-semibold">Hours</p>
+          <p class="mt-1">Daily 11:00 – 19:00</p>
+          <p class="mt-4 font-semibold">WhatsApp</p>
+          <p class="mt-1"><a class="underline" href="https://wa.me/601123115187">+60 11 2311 5187</a></p>
+        </div>
+        <div>
+          <!-- Replace src with your Google Maps embed link if desired -->
+          <iframe class="w-full h-64 rounded-2xl border border-black/10" loading="lazy" allowfullscreen
+            src="https://www.google.com/maps?q=48-G%20Jalan%20Permas%2010/7%2C%20Permas%20Jaya%2C%20Masai%2081750&output=embed"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating WhatsApp CTA (bottom) -->
+  <a href="https://wa.me/601123115187" class="fixed right-4 bottom-4 md:right-6 md:bottom-6 bg-green-500 text-white rounded-full shadow-soft px-5 py-3 text-sm font-bold flex items-center gap-2">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.94 11.94 0 0012.06 0C5.51 0 .18 5.33.18 11.88c0 2.1.55 4.16 1.6 5.97L0 24l6.33-1.65a11.87 11.87 0 005.73 1.47h.01c6.55 0 11.88-5.33 11.88-11.88 0-3.18-1.24-6.18-3.41-8.46zM12.07 21.6h-.01a9.76 9.76 0 01-4.98-1.36l-.36-.21-3.76.98 1-3.66-.24-.38a9.77 9.77 0 01-1.5-5.2C2.22 6.53 6.74 2 12.06 2c2.62 0 5.09 1.02 6.95 2.88a9.8 9.8 0 012.92 6.96c0 5.33-4.52 9.76-9.86 9.76zm5.7-7.3c-.31-.16-1.83-.9-2.12-1-.29-.11-.49-.16-.7.16-.2.31-.8 1-.97 1.2-.18.2-.36.23-.67.08-.31-.16-1.3-.48-2.48-1.52-.92-.82-1.55-1.83-1.73-2.14-.18-.31-.02-.48.13-.63.14-.14.31-.36.47-.54.16-.18.21-.31.31-.52.1-.2.05-.39-.02-.54-.08-.16-.7-1.68-.96-2.3-.25-.6-.51-.52-.7-.52h-.6c-.21 0-.54.08-.82.39-.29.31-1.07 1.04-1.07 2.54 0 1.5 1.1 2.95 1.25 3.15.16.2 2.18 3.33 5.28 4.68.74.32 1.32.51 1.77.65.74.23 1.41.2 1.94.12.59-.09 1.83-.75 2.09-1.48.26-.73.26-1.35.18-1.48-.08-.13-.29-.21-.6-.37z"/></svg>
+    WhatsApp Us
+  </a>
+
+  <!-- Footer -->
+  <footer class="border-t border-black/10">
+    <div class="container mx-auto px-4 py-10 text-sm text-black/70">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <p>© <span id="year"></span> Hans Korea Beauty · <a class="underline" href="https://www.instagram.com/hansbeauty.jb/" target="_blank" rel="noopener">@hansbeauty.jb</a></p>
+        <p>48‑G, Jalan Permas 10/7, Permas Jaya, Masai · Daily 11:00–19:00</p>
+      </div>
+    </div>
   </footer>
 
+  <!-- Data (Services) -->
+  <script id="SERVICES_DATA" type="application/json">{
+    "items": [
+      {"name":"Skinplaning","price":"1st trial RM250"},
+      {"name":"Intensive Hydrating","price":"from RM198"},
+      {"name":"Personal Special Care","price":"RM336"},
+      {"name":"Acne Care","price":"RM336"},
+      {"name":"Brightening Care","price":"RM336"},
+      {"name":"Cold Plasma Care","price":"from RM388"},
+      {"name":"Manicure/Pedicure","price":"from RM40"},
+      {"name":"Laser Hair Removal","price":"Ask"},
+      {"name":"Ingrown Nail Care","price":"Ask"}
+    ]
+  }</script>
+
+  <!-- Scripts: render JSON boards -->
   <script>
-    const texts = {
-      ko: {
-        promo1: "첫 방문 50% 할인!",
-        promo2: "인스타 팔로우 시 사은품 증정",
-        promo3: "충전 혜택: 500링깃=+50 / 1000링깃=+100 / 2000링깃=+300",
-        promo4: "충전 금액 결제 시 30% 할인",
-        gallery: "비포 & 애프터 갤러리",
-        contact: "연락하기",
-        address: "주소: 조호르바루 Masai, Jalan Permas 10/7",
-        map: "약도"
-      },
-      zh: {
-        promo1: "首次来访享受50%折扣！",
-        promo2: "关注Instagram送礼品",
-        promo3: "充值优惠: RM500=+50 / RM1000=+100 / RM2000=+300",
-        promo4: "使用充值金额付款可享30%折扣",
-        gallery: "前后对比画廊",
-        contact: "联系我们",
-        address: "地址: 柔佛新山 Masai, Jalan Permas 10/7",
-        map: "地图"
-      },
-      en: {
-        promo1: "50% OFF for First Visit!",
-        promo2: "Follow Instagram & Get a Gift",
-        promo3: "Top-up Bonus: RM500=+50 / RM1000=+100 / RM2000=+300",
-        promo4: "30% OFF when paying with top-up balance",
-        gallery: "Before & After Gallery",
-        contact: "Contact Us",
-        address: "Address: Masai, Johor Bahru, Jalan Permas 10/7",
-        map: "Map"
+    const $ = (sel) => document.querySelector(sel);
+
+    // Year
+    $('#year').textContent = new Date().getFullYear();
+
+    // Services
+    try {
+      const servicesData = JSON.parse(document.getElementById('SERVICES_DATA').textContent).items || [];
+      const wrap = document.getElementById('servicesGrid');
+      servicesData.forEach(s => {
+        const el = document.createElement('div');
+        el.className = 'rounded-xl border border-black/10 p-4 flex items-center justify-between';
+        el.innerHTML = `<span>${s.name}</span><span class="font-semibold">${s.price}</span>`;
+        wrap.appendChild(el);
+      });
+    } catch(e) { console.warn('SERVICES_DATA parse error', e); }
+
+    // Promotions
+    function renderPromos(){
+      const data = JSON.parse(document.getElementById('PROMO_DATA').textContent);
+      const items = data.items || [];
+      const wrap = document.getElementById('promoList');
+      wrap.innerHTML = '';
+      items.forEach(p => {
+        const until = p.until ? new Date(p.until) : null;
+        const expired = until && until < new Date();
+        const badge = until ? `<span class="px-2 py-0.5 rounded-full text-[11px] ${expired?'bg-black/10':'bg-black text-white'}">${expired?'Ended':('Until '+ until.toLocaleDateString())}</span>` : '';
+        const card = document.createElement('div');
+        card.className = 'rounded-2xl border border-black/10 p-4 bg-white';
+        card.innerHTML = `<div class="flex items-start justify-between gap-3"><div><h4 class="font-bold">${p.title}</h4><p class="text-sm text-black/70 mt-1">${p.desc||''}</p></div>${badge}</div>`;
+        wrap.appendChild(card);
+      });
+    }
+    renderPromos();
+
+    // Gallery (categorized single-square images)
+    const GALLERY = {
+      get data(){
+        try{ return JSON.parse(document.getElementById('GALLERY_DATA').textContent); }
+        catch(e){ return { categories:[], items:[] }; }
       }
     };
+    let currentCategory = 'All';
 
-    function setLang(lang) {
-      document.getElementById("promo1").innerText = texts[lang].promo1;
-      document.getElementById("promo2").innerText = texts[lang].promo2;
-      document.getElementById("promo3").innerText = texts[lang].promo3;
-      document.getElementById("promo4").innerText = texts[lang].promo4;
-      document.getElementById("gallery-title").innerText = texts[lang].gallery;
-      document.getElementById("contact-title").innerText = texts[lang].contact;
-      document.getElementById("address").innerText = texts[lang].address;
-      document.getElementById("map-title").innerText = texts[lang].map;
+    function renderGalleryFilters(){
+      const data = GALLERY.data;
+      const cats = ['All', ...(data.categories||[])];
+      const wrap = document.getElementById('galleryFilters');
+      if(!wrap) return;
+      wrap.innerHTML = '';
+      cats.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.className = 'px-3 py-1 rounded-full border text-sm ' + (cat===currentCategory ? 'bg-black text-white border-black' : 'bg-white border-black/10');
+        btn.textContent = cat;
+        btn.addEventListener('click', ()=>{ currentCategory = cat; renderGallery(); renderGalleryFilters(); });
+        wrap.appendChild(btn);
+      });
     }
 
-    // 슬라이드 갤러리
-    let slideIndex = 1;
-    showSlides(slideIndex);
-    function plusSlides(n) { showSlides(slideIndex += n); }
-    function currentSlide(n) { showSlides(slideIndex = n); }
-    function showSlides(n) {
-      const slides = document.getElementsByClassName("slides");
-      const dots = document.getElementsByClassName("dot");
-      if (n > slides.length) slideIndex = 1;
-      if (n < 1) slideIndex = slides.length;
-      for (let i = 0; i < slides.length; i++) slides[i].style.display = "none";
-      for (let i = 0; i < dots.length; i++) dots[i].className = dots[i].className.replace(" active", "");
-      slides[slideIndex - 1].style.display = "block";
-      dots[slideIndex - 1].className += " active";
+    function renderGallery(){
+      const { items=[] } = GALLERY.data;
+      const wrap = document.getElementById('galleryGrid');
+      if(!wrap) return;
+      wrap.innerHTML = '';
+      const filtered = currentCategory==='All' ? items : items.filter(i => i.cat === currentCategory);
+      filtered.forEach(g => {
+        const card = document.createElement('div');
+        card.className = 'rounded-2xl overflow-hidden border border-black/10 bg-white';
+        card.innerHTML = `
+          <div class="sq">
+            <img src="${g.img}" alt="${g.label||''}">
+          </div>
+          <div class="p-3 text-xs tracking-wide uppercase text-center">${g.label||''}</div>
+        `;
+        wrap.appendChild(card);
+      });
     }
+    renderGalleryFilters();
+    renderGallery();
 
-    // 기본 언어: 한국어
-    setLang('ko');
+    // Quick editors for inline JSON
+    function openEditor(scriptId, title){
+      const raw = document.getElementById(scriptId).textContent.trim();
+      const input = prompt(`${title}: Edit JSON then press OK`, raw);
+      if(!input) return;
+      try{
+        JSON.parse(input); // validate
+        document.getElementById(scriptId).textContent = input;
+        if(scriptId==='PROMO_DATA') renderPromos();
+        if(scriptId==='GALLERY_DATA'){ renderGalleryFilters(); renderGallery(); }
+        alert('Updated! Remember to save this HTML file afterward.');
+      }catch(e){ alert('Invalid JSON. Not saved.'); }
+    }
+    document.getElementById('promoAddBtn').addEventListener('click', ()=>openEditor('PROMO_DATA','Promotions'));
+    document.getElementById('galleryAddBtn').addEventListener('click', ()=>openEditor('GALLERY_DATA','Gallery'));
   </script>
-
 </body>
 </html>
